@@ -28,6 +28,7 @@ class App extends Component {
         repeatName = 1;
         alert(`${name} is already in contacts`);
       }
+      return repeatName;
     });
     if (!repeatName) {
       const contact = {
@@ -57,7 +58,6 @@ class App extends Component {
   };
 
   render() {
-    //console.log(this.state);
     const { contacts, filter } = this.state;
     return (
       <Container>
