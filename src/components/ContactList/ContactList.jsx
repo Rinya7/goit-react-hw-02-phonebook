@@ -8,7 +8,7 @@ export const ContactList = ({ contacts, filter, buttonDelete }) => {
           return (
             <Li key={id}>
               <Text>
-                {name} : <span>{number}</span>
+                {name} tel: <span> {number}</span>
               </Text>
 
               <button
@@ -21,6 +21,7 @@ export const ContactList = ({ contacts, filter, buttonDelete }) => {
             </Li>
           );
         }
+        return contacts;
       })}
     </Ul>
   );
