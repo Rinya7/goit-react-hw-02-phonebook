@@ -1,12 +1,16 @@
+import { Ul, Li, Text } from './ContactList.styled';
 import PropTypes from 'prop-types';
 export const ContactList = ({ contacts, filter, buttonDelete }) => {
   return (
-    <ul>
+    <Ul>
       {contacts.map(({ name, id, number }) => {
-        if (name.toLowerCase().includes(filter)) {
+        if (name.toLowerCase().includes(filter.toLowerCase())) {
           return (
-            <li key={id}>
-              {name}:{number}
+            <Li key={id}>
+              <Text>
+                {name} : <span>{number}</span>
+              </Text>
+
               <button
                 type="button"
                 name="delete"
@@ -14,11 +18,11 @@ export const ContactList = ({ contacts, filter, buttonDelete }) => {
               >
                 Delete
               </button>
-            </li>
+            </Li>
           );
         }
       })}
-    </ul>
+    </Ul>
   );
 };
 

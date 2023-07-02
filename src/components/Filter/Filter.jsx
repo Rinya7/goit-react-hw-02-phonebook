@@ -1,3 +1,4 @@
+import { Input, Title, Div } from './Filter.styled';
 const { Component } = require('react');
 
 class Filter extends Component {
@@ -7,16 +8,16 @@ class Filter extends Component {
 
   render() {
     return (
-      <>
-        <h3>Find contacts by name:</h3>
-        <input
+      <Div>
+        <Title>Find contacts by name:</Title>
+        <Input
           type="text"
           name="filter"
           title="filter contacts"
           required
           onChange={this.filterByName}
         />
-      </>
+      </Div>
     );
   }
 }

@@ -19,6 +19,7 @@ class App extends Component {
 
   handleContactSubmits = (name, number) => {
     let repeatName = 0;
+    console.log('nameInput:', name.toLowerCase());
     this.state.contacts.map(contact => {
       if (
         contact.name.toLowerCase() === name.toLowerCase() ||
@@ -56,7 +57,7 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state);
+    //console.log(this.state);
     const { contacts, filter } = this.state;
     return (
       <Container>
