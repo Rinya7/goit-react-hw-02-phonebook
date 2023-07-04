@@ -25,7 +25,9 @@ class App extends Component {
     );
 
     if (simpleContact) {
-      alert(`${simpleContact} is already in contacts`);
+      alert(
+        `${simpleContact.name} or ${simpleContact.number} is already in contacts`
+      );
     }
 
     if (!simpleContact) {
@@ -40,7 +42,6 @@ class App extends Component {
           contacts: [contact, ...previus.contacts],
         };
       });
-       
     }
   };
 
