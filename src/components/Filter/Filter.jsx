@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Input, Title, Div } from './Filter.styled';
 const { Component } = require('react');
 
@@ -23,3 +24,7 @@ class Filter extends Component {
 }
 
 export { Filter };
+
+Filter.protoType = {
+  filterByName: PropTypes.func,
+};

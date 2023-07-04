@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Form, FildInput, Label, Button, Div } from './ContactsForm.styled';
 const { Component } = require('react');
 
@@ -40,3 +41,7 @@ class ContactsForm extends Component {
 }
 
 export { ContactsForm };
+
+ContactsForm.protoType = {
+  handleSubmit: PropTypes.func,
+};

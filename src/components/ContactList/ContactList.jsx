@@ -1,28 +1,19 @@
 import { Ul, Li, Text } from './ContactList.styled';
 import PropTypes from 'prop-types';
-export const ContactList = ({ contacts, filter, buttonDelete }) => {
+export const ContactList = ({ contacts, buttonDelete }) => {
   return (
     <Ul>
-      {contacts.map(({ name, id, number }) => {
-        if (name.toLowerCase().includes(filter.toLowerCase())) {
-          return (
-            <Li key={id}>
-              <Text>
-                {name} tel: <span> {number}</span>
-              </Text>
+      {contacts.map(({ name, id, number }) => (
+        <Li key={id}>
+          <Text>
+            {name} tel: <span> {number}</span>
+          </Text>
 
-              <button
-                type="button"
-                name="delete"
-                onClick={() => buttonDelete(id)}
-              >
-                Delete
-              </button>
-            </Li>
-          );
-        }
-        return contacts;
-      })}
+          <button type="button" name="delete" onClick={() => buttonDelete(id)}>
+            Delete
+          </button>
+        </Li>
+      ))}
     </Ul>
   );
 };
@@ -35,6 +26,6 @@ ContactList.protoType = {
       number: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
-  filter: PropTypes.string,
+
   buttonDelete: PropTypes.func,
 };
