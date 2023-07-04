@@ -24,7 +24,6 @@ class App extends Component {
         contact.name.toLocaleLowerCase() === name.toLocaleLowerCase()
     );
 
-    console.log(simpleContact);
     if (simpleContact) {
       alert(`${simpleContact} is already in contacts`);
     }
@@ -35,7 +34,7 @@ class App extends Component {
         name,
         number,
       };
-      console.log(contact);
+
       this.setState(previus => {
         return {
           contacts: [contact, ...previus.contacts],
