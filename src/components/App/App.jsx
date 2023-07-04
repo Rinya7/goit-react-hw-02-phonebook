@@ -17,41 +17,42 @@ class App extends Component {
     filter: '',
   };
 
-  handleContactSubmits = (name, number) => {
+  handleContactSubmits = ({ name, number }) => {
     const simpleContact = this.state.contacts.find(
       contact =>
-        contact.number.toLocaleLowerCase() === number.toLocaleLowerCase() ||
-        contact.name.toLocaleLowerCase() === name.toLocaleLowerCase()
+        contact.name.toLocaleLowerCase() === name.toLocaleLowerCase() ||
+        contact.number === number
     );
 
     if (simpleContact) {
-      alert(
-        `${simpleContact.name} or ${simpleContact.number} is already in contacts`
-      );
+      return alert(`${name} or ${number} is already in contacts`);
     }
 
-    if (!simpleContact) {
-      const contact = {
-        id: nanoid(),
-        name,
-        number,
+    const contact = {
+      id: nanoid(),
+      name,
+      number,
+    };
+
+    this.setState(previus => {
+      return {
+        contacts: [contact, ...previus.contacts],
       };
-
-      this.setState(previus => {
-        return {
-          contacts: [contact, ...previus.contacts],
-        };
-      });
-    }
+    });
   };
 
-  filterByName = filteredName => {
-    this.setState(previus => ({
-      filter: filteredName,
-      contacts: previus.contacts.filter(contact =>
-        contact.name.toLowerCase().includes(filteredName.toLowerCase())
-      ),
-    }));
+  filterState = evt => {
+    this.setState({
+      filter: evt.target.value,
+    });
+  };
+
+  filterByName = () => {
+    const { contacts, filter } = this.state;
+
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
   };
 
   deleteContact = contactId => {
@@ -61,15 +62,18 @@ class App extends Component {
   };
 
   render() {
-    const { contacts } = this.state;
+    const { filter } = this.state;
 
     return (
       <Container>
         <h1>Phonebook</h1>
         <ContactsForm onSubmitForm={this.handleContactSubmits} />
         <h2>Contacts</h2>
-        <Filter filterForm={this.filterByName} />
-        <ContactList contacts={contacts} buttonDelete={this.deleteContact} />
+        <Filter filter={filter} filterForm={this.filterState} />
+        <ContactList
+          contacts={this.filterByName()}
+          buttonDelete={this.deleteContact}
+        />
       </Container>
     );
   }

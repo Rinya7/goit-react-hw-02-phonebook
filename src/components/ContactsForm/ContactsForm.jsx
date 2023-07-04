@@ -3,14 +3,29 @@ import { Form, FildInput, Label, Button, Div } from './ContactsForm.styled';
 const { Component } = require('react');
 
 class ContactsForm extends Component {
+  state = {
+    name: '',
+    number: '',
+  };
+
+  handleChange = evt => {
+    const { name, value } = evt.currentTarget;
+    this.setState({
+      [name]: value,
+    });
+  };
+
   handleSubmit = evt => {
     evt.preventDefault();
-    const { name, number } = evt.currentTarget;
-    this.props.onSubmitForm(name.value, number.value);
-    evt.currentTarget.reset();
+    this.props.onSubmitForm(this.state);
+    this.setState({
+      name: '',
+      number: '',
+    });
   };
 
   render() {
+    const { name, number } = this.state;
     return (
       <Form onSubmit={this.handleSubmit}>
         <Div>
@@ -18,9 +33,11 @@ class ContactsForm extends Component {
           <FildInput
             type="text"
             name="name"
+            value={name}
             pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
+            onChange={this.handleChange}
           />
         </Div>
         <Div>
@@ -28,9 +45,11 @@ class ContactsForm extends Component {
           <FildInput
             type="tel"
             name="number"
+            value={number}
             pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
+            onChange={this.handleChange}
           />
         </Div>
 
@@ -44,4 +63,5 @@ export { ContactsForm };
 
 ContactsForm.protoType = {
   handleSubmit: PropTypes.func,
+  handleChange: PropTypes.func,
 };
