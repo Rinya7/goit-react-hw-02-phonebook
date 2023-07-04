@@ -40,7 +40,7 @@ class App extends Component {
           contacts: [contact, ...previus.contacts],
         };
       });
-      console.log(this.state);
+       
     }
   };
 
