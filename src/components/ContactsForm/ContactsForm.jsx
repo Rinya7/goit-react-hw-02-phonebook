@@ -64,4 +64,5 @@ export { ContactsForm };
 ContactsForm.protoType = {
   handleSubmit: PropTypes.func,
   handleChange: PropTypes.func,
+  onSubmitForm: PropTypes.func,
 };
